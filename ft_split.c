@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/28 12:23:54 by ytomiyos          #+#    #+#             */
-/*   Updated: 2020/07/11 17:45:00 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2020/07/11 18:57:40 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,15 @@ static	int		count_elements(char *str, char c)
 
 	i = 0;
 	count = 0;
-	if (str[i] != c)
-		count++;
-	i = 1;
+	while (str[i] == c && str[i])
+		i++;
 	while (str[i])
 	{
-		if (str[i - 1] == c && str[i] != c)
-			count++;
-		i++;
+		count++;
+		while (str[i] != c && str[i])
+			i++;
+		while (str[i] == c && str[i])
+			i++;
 	}
 	return (count);
 }
