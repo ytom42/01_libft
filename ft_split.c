@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/28 12:23:54 by ytomiyos          #+#    #+#             */
-/*   Updated: 2020/07/11 18:57:40 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2020/07/12 00:26:31 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static	int		count_elements(char *str, char c)
 	return (count);
 }
 
-static	int		ft_free(char **list, int n)
+static	void	ft_free(char **list)
 {
 	int		i;
 
@@ -43,18 +43,27 @@ static	int		ft_free(char **list, int n)
 		i++;
 	}
 	free(list);
-	return (n);
+	return ;
+}
+
+static	char	*new_list(char *s, char c)
+{
+	int		len;
+
+	len = 0;
+	while (s[len] != c)
+		len++;
+	return (ft_substr(s, 0, len));
 }
 
 char			**ft_split(char const *s, char c)
 {
 	int		i;
-	int		len;
 	int		elements_n;
 	char	**result;
 
 	i = 0;
-	if (*s == '\0')
+	if (!s)
 		return (NULL);
 	elements_n = count_elements((char *)s, c);
 	if (!(result = (char**)malloc(sizeof(char*) * (elements_n + 1))))
@@ -62,14 +71,14 @@ char			**ft_split(char const *s, char c)
 	result[elements_n] = NULL;
 	while (i < elements_n)
 	{
-		len = 0;
 		while (*s == c)
 			s++;
-		while (s[len] != c)
-			len++;
-		if (!(result[i] = ft_substr(s, 0, len)))
-			i = ft_free(result, elements_n);
-		s += len;
+		if (!(result[i] = new_list((char *)s, c)))
+		{
+			ft_free(result);
+			return (NULL);
+		}
+		s += ft_strlen(result[i]);
 		i++;
 	}
 	return (result);
