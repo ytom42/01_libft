@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/28 12:23:54 by ytomiyos          #+#    #+#             */
-/*   Updated: 2020/07/12 00:26:31 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2020/07/12 10:12:10 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,16 @@ static	void	ft_free(char **list)
 static	char	*new_list(char *s, char c)
 {
 	int		len;
+	char	*tmp;
 
 	len = 0;
-	while (s[len] != c)
+	while (s[len] != c && s[len])
 		len++;
-	return (ft_substr(s, 0, len));
+	tmp = (char *)malloc(sizeof(char) * (len + 1));
+	if (!(tmp))
+		return (NULL);
+	ft_strlcpy(tmp, s, len + 1);
+	return (tmp);
 }
 
 char			**ft_split(char const *s, char c)
