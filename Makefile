@@ -6,7 +6,7 @@
 #    By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/22 22:04:00 by ytomiyos          #+#    #+#              #
-#    Updated: 2020/07/07 16:23:25 by ytomiyos         ###   ########.fr        #
+#    Updated: 2020/07/12 11:03:06 by ytomiyos         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,7 +58,8 @@ B_SRCS	=	ft_lstnew.c \
 			ft_lstadd_back.c \
 			ft_lstdelone.c \
 			ft_lstclear.c \
-			ft_lstiter.c
+			ft_lstiter.c \
+			ft_lstmap.c
 
 OBJS	=	$(SRCS:.c=.o)
 
